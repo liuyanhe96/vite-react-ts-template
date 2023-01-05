@@ -12,7 +12,7 @@ module.exports = {
     "declaration-colon-space-after": "always-single-line",
     // 颜色指定大写 -> lower -> 所有的大写变成小写
     "color-hex-case": "lower",
-    // 颜色6位长度 #333 #fff
+    // 颜色6位长度 不允许写#333 #fff
     "color-hex-length": "long",
     // 兼容自定义标签名
     "selector-type-no-unknown": [
