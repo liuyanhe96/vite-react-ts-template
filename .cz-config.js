@@ -24,7 +24,7 @@ module.exports = {
       name: "chore:    对构建过程或辅助工具和库的更改（不影响源文件、测试用例）",
     },
     { value: "revert", name: "revert:   回滚 commit" },
-    { value: "wip", name: "wip:      正在开发中" },
+    { value: "wip", name: "wip:      正在开发ing~" },
     { value: "workflow", name: "workflow: 调整工作流" },
     { value: "types", name: "types:    更新typescript类型" },
     { value: "release", name: "release:  发布新版本" },
