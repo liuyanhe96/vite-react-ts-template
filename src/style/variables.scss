@@ -1,4 +1,4 @@
-$prefix: 'semi';
+$prefix: "semi";
 
 /* sizing */
 $height-control-small: 24px; // 表单项高度 - 小尺寸
@@ -43,10 +43,9 @@ $z-tooltip: 1060; // tooltip 组件 z-index
 
 // font
 
-
-$font-family-regular: 'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI',
-    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
-    helvetica, arial, sans-serif; // semi 预置字体回退
+$font-family-regular: "Inter", -apple-system, blinkmacsystemfont, "Segoe UI",
+  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
+  helvetica, arial, sans-serif; // semi 预置字体回退
 $font-size-small: 12px; // 小文本字号
 $font-size-regular: 14px; // 常规文本字号
 
@@ -61,4 +60,4 @@ $font-weight-light: 200; // 字重 - 轻
 $font-weight-regular: 400; // 字重 - 常规
 $font-weight-bold: 600; // 字重 - 加粗
 
-
+$line-height-regular: 20px;
