@@ -79,3 +79,32 @@
     color: var(--color-disabled-text);
   }
 }
+
+.loading {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.35;
+    background: var(--color-white); // 加上白色遮照 opacity
+    inset: -1px;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.pin {
+  animation: pin 1.5s infinite linear; // 以线性方式持续不断的旋转
+}
+
+@keyframes pin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    // 相当于旋转360度
+    transform: rotate(359deg);
+  }
+}

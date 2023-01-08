@@ -39,6 +39,7 @@ const Button: React.FunctionComponent<ButtonProps> = props => {
     [`btn-${type}`]: type,
     [`btn-${size}`]: size,
     disabled: type === "link" && disabled,
+    loading: loading, // 设置后div class上就显示loading
   });
 
   if (type === "link" && href) {
@@ -53,6 +54,11 @@ const Button: React.FunctionComponent<ButtonProps> = props => {
     // button情况下
     return (
       <button disabled={disabled} className={classes} {...rest}>
+        {loading && (
+          <span className="pr-1">
+            <i className="fas fa-spinner pin"></i>
+          </span>
+        )}
         {children}
       </button>
     );
