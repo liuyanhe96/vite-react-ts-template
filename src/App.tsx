@@ -5,6 +5,7 @@ export default function App() {
     <main className="semi-always-light">
       <Button
         id="app"
+        disabled
         onClick={() => {
           console.log("btn click");
         }}
@@ -12,9 +13,13 @@ export default function App() {
         {" "}
         普通Button{" "}
       </Button>
-      <Button href="https://www.baidu.com" target="blank" type="link">
-        {" "}
-        链接Button{" "}
+      <Button size="small">Small Btn</Button>
+      <Button size="large">Large Btn</Button>
+      <Button type="danger">Danger Btn</Button>
+      <Button type="primary">Primary Btn</Button>
+      <Button type="default">Default Btn</Button>
+      <Button href="https://www.baidu.com" target="blank" type="link" disabled>
+        disabled 链接Button
       </Button>
     </main>
   );

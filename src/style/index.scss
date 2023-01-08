@@ -3,3 +3,6 @@
 @import "./variables.scss";
 @import "./global.scss";
 @import "./local.scss";
+
+// btn组件样式 -> 对应issue vite没有监视到Button.css样式的变化； 但是没有遇到；遇到的话就在文件中import
+@import "../components/Button/Button";

@@ -1,0 +1,81 @@
+@import "../../style/variables";
+@import "../../style/mixin";
+
+.btn {
+  @include btn;
+  @include btn-size(
+    $btn-padding-y,
+    $btn-padding-x,
+    $font-size-regular,
+    $border-radius
+  );
+}
+
+.btn-large {
+  @include btn-size(
+    $btn-padding-y-lg,
+    $btn-padding-x-lg,
+    $btn-font-size-lg,
+    $border-radius-lg
+  );
+}
+
+.btn-default {
+  @include btn-size(
+    $btn-padding-y,
+    $btn-padding-x,
+    $font-size-regular,
+    $border-radius
+  );
+  @include btn-style(
+    var(--color-fill-0),
+    var(--color-fill-0),
+    var(--color-text-0),
+    var(--color-default-hover),
+    var(--color-default-hover),
+    var(--color-text-0)
+  );
+}
+
+.btn-small {
+  @include btn-size(
+    $btn-padding-y-sm,
+    $btn-padding-x-sm,
+    $btn-font-size-sm,
+    $border-radius-sm
+  );
+}
+
+.btn-primary {
+  @include btn-style(
+    var(--color-primary),
+    var(--color-primary),
+    var(--color-white),
+    var(--color-primary-hover),
+    var(--color-primary-hover),
+    var(--color-white)
+  );
+}
+
+.btn-danger {
+  @include btn-style(
+    var(--color-danger),
+    var(--color-danger),
+    var(--color-white),
+    var(--color-danger-hover),
+    var(--color-danger-hover),
+    var(--color-white)
+  );
+}
+
+.btn-link {
+  color: var(--color-link);
+  text-decoration: linen;
+  &:hover {
+    color: var(--color-link-hover);
+  }
+
+  &.disabled {
+    color: var(--color-disabled-text);
+  }
+}

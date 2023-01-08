@@ -19,7 +19,7 @@
   "scripts": {
     "build": "npm run typecheck && vite build",
     "commit": "git-cz",
-    "dev": "vite",
+    "dev": "vite --port 3003",
     "format": "prettier --write 'src/**/*.{js,json,tsx,css,less,scss,ts,html,md}' && git update-index --again",
     "lint:eslint": "eslint --cache --max-warnings 0 'src/**/*.{ts,tsx}'",
     "lint:lint-staged": "lint-staged",
@@ -60,6 +60,7 @@
     }
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

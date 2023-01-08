@@ -78,3 +78,67 @@
         }
     }
 }
+
+@mixin btn() {
+    @include shadow-0;
+    position: relative;
+    display: inline-block;
+    border: $border-thickness-control solid transparent;
+    font-weight: $font-weight-regular;
+    text-align: center;
+    white-space: nowrap;
+    //box-shadow: $btn-shadow;
+    transition: all .3s $ease-in-out;
+    background-image: none;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+
+    &,&:active,&:focus {
+        outline: 0;
+    }
+
+    &:not([disabled]):hover {
+        text-decoration: none;
+    }
+    &:not([disabled]):active {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    &[disabled], &.disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+
+        > * {
+            pointer-events: none;
+        }
+    }
+}
+
+@mixin btn-size($py, $px, $font-size, $border-radius) {
+    padding: $py $px;
+    font-size: $font-size;
+    border-radius: $border-radius;
+}
+
+// 背景色、文字色、边框色、hover颜色、focus颜色、active颜色
+// darken & lighten --> lighten 5%成为hover的颜色； 这种方案指针对16进制颜色才生效
+// css variables 不能使用lighten这些方法的！！！
+@mixin btn-style(
+    $background-color,
+    $border-color,
+    $color,
+    $background-color-hover,
+    $border-color-hover,
+    $color-hover
+) {
+    background-color: $background-color;
+    border-color: $border-color;
+    color: $color;
+    &:hover, &:focus {
+        border-color: $border-color-hover;
+        color: $color-hover;
+        background-color: $background-color-hover;
+    }
+}
