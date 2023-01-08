@@ -11,6 +11,7 @@ export default defineConfig({
   plugins: isDebug ? [legacy(), reactRefresh()] : [], // 开发模式才去加载这个两个插件；
   // plugins: [legacy(), reactRefresh()], // 这两个包用于平时开发过程中，index.html、react刷新时到用的插件
   esbuild: {
+    // 会默认导入react核心库
     jsxInject: `import React from 'react'`, // automatically import React in jsx files
   },
   resolve: {
