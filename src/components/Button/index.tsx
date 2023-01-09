@@ -31,6 +31,7 @@ type AnchButtonProps = Omit<React.AnchorHTMLAttributes<HTMLElement>, "type"> &
 export type ButtonProps = Partial<NativeButtonProps & AnchButtonProps>;
 
 const Button: React.FunctionComponent<ButtonProps> = props => {
+  // console.log(props);
   const { className, disabled, loading, size, type, href, children, ...rest } =
     props;
 

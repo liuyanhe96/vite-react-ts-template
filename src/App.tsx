@@ -1,8 +1,13 @@
+import { FaAws } from "react-icons/fa";
+
 import { Button } from "./components";
 
 export default function App() {
   return (
     <main className="semi-always-light">
+      <h3>Icon 组件</h3>
+      <FaAws className="test" size="44px" color="red"></FaAws>
+      <h3>Button组件</h3>
       <Button
         id="app"
         disabled
