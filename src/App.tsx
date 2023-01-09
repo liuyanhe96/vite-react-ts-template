@@ -7,6 +7,12 @@ export default function App() {
     <main className="semi-always-light">
       <h3>Icon 组件</h3>
       <Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>
+      <Icon
+        custom
+        url="//at.alicdn.com/t/font_1791095_6urvhbxaj73.css"
+        icon="qiandao"
+        size="44px"
+      ></Icon>
       {/*<FaAws className="test" size="44px" color="red"></FaAws>*/}
       <h3>Button组件</h3>
       <Button
