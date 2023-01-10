@@ -82,6 +82,7 @@ function loadUrl(url: string): void {
   }
 }
 
+// 不建议下面的定义Icon的写法 因为Icon上面没有任何类型上面的束缚；没有children是可以的 但是有children就不合适了
 export default function Icon(props: IIconProps) {
   // 1. 判断custom、URL属性; 注意 url是否满足网址的正则  ----> Icon.propTypes Url
   // 2. 存储url --> 加载link -> 加载对应的css文件  ----> 使用set集合 customCache，为了防止url由不同的icon添加到icon组件里面时产生重复
