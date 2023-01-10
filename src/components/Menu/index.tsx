@@ -6,6 +6,7 @@ import classnames from "classnames";
 import { createContext, useState } from "react";
 
 import { default as Item, IMenuItemProps } from "./MenuItem"; // 把MenuItem挂到Menu 在其他组件就可以使用<Menu.item>
+import { default as SubMenu, ISubMenuProps } from "./SubMenu";
 
 /*   -------------------------------- type & interface ---------------------------------------- */
 type MenuMode = "horizontal" | "vertical";
@@ -13,6 +14,7 @@ type MenuMode = "horizontal" | "vertical";
 // MenuType是联合类型&
 type MenuType = React.FunctionComponent<IMenuProps> & {
   Item: React.FunctionComponent<IMenuItemProps>;
+  SubMenu: React.FunctionComponent<ISubMenuProps>;
 };
 type SelectFunction = (selected: number) => void;
 
@@ -28,6 +30,9 @@ interface IMenuProps {
 interface IMenuContext {
   index: number;
   onSelect?: SelectFunction;
+  // 传递给SubMenu的
+  mode?: string;
+  defaultOpenKeys?: string[];
 }
 
 /*   -------------------------------- Code ---------------------------------------- */
@@ -44,7 +49,9 @@ const Menu: MenuType = props => {
     children,
     defaultIndex,
     onSelect,
+    defaultOpenKeys,
   } = props;
+
   const classes = classnames("menu", cls, {
     vertical: mode === "vertical",
   });
@@ -58,14 +65,20 @@ const Menu: MenuType = props => {
     }
   };
   // 设置要传递的val
-  const value = {
+  const value: IMenuContext = {
     index: current ? current : 0,
     onSelect: handleClick,
+    // 传递给SubMenu的
+    mode,
+    defaultOpenKeys,
   };
   return (
-    <ul className={classes} style={style}>
-      <MenuContext.Provider value={value}>{children}</MenuContext.Provider>
-    </ul>
+    <div>
+      <ul className={classes} style={style}>
+        <MenuContext.Provider value={value}>{children}</MenuContext.Provider>
+      </ul>
+      <div>current: {current}</div>
+    </div>
   );
 };
 
@@ -76,6 +89,8 @@ Menu.defaultProps = {
 };
 
 // 把MenuItem挂到Menu属性上去 在其他组件就可以使用<Menu.item>
-Menu.Item = Item;
+Menu.Item = Item; // Item: React.FunctionComponent<IMenuItemProps>;
+// SubMenu挂到Menu上去
+Menu.SubMenu = SubMenu;
 
 export default Menu;

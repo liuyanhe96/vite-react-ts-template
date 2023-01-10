@@ -3,6 +3,25 @@ import { Button, Icon, Menu } from "./components";
 export default function App() {
   return (
     <main className="semi-always-light">
+      <h3>SubMenu组件</h3>
+      <Menu
+        className={"test"}
+        mode="vertical"
+        defaultOpenKeys={["33"]}
+        onSelect={val => console.log(val)}
+      >
+        <Menu.Item index={0}>1</Menu.Item>
+        <Menu.Item index={1}>2</Menu.Item>
+        <Menu.SubMenu title="subTitle" index={33}>
+          <Menu.Item index={4}>5</Menu.Item>
+          <Menu.Item index={5}>6</Menu.Item>
+          <Menu.Item index={6}>7</Menu.Item>
+        </Menu.SubMenu>
+        <Menu.Item index={2} disabled>
+          3
+        </Menu.Item>
+        <Menu.Item index={3}>4</Menu.Item>
+      </Menu>
       <h3>Menu 组件</h3>
       <Menu
         className={"test"}
