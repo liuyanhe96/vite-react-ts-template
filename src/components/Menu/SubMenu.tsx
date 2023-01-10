@@ -1,10 +1,11 @@
 import classnames from "classnames";
-import { useContext, useState } from "react";
+import { Children, cloneElement, useContext, useState } from "react";
 
 import { MenuContext } from "@/components/Menu/index";
+import { IMenuItemProps } from "@/components/Menu/MenuItem";
 
 export interface ISubMenuProps {
-  index?: number;
+  index?: string;
   title?: string;
   className?: string;
 }
@@ -25,6 +26,7 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = props => {
     vertical: mode === "vertical",
   });
 
+  // 点击菜单事件处理
   const clickHandle =
     mode === "vertical"
       ? {
@@ -35,6 +37,7 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = props => {
         }
       : {};
 
+  // 鼠标hover事件处理
   const hoverHandle =
     mode !== "vertical"
       ? {
@@ -49,14 +52,39 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = props => {
         }
       : {};
 
+  const renderChildren = () => {
+    // 1. 从父组件 遍历children 以便拿到对应的index  ---> 借助React辅助函数 React.Children.map
+    return Children.map(children, (child, index) => {
+      const childElement =
+        child as React.FunctionComponentElement<IMenuItemProps>;
+      if (
+        // 根据displayName来判断当前加的Menu下面的children组件里面是否有其他不是Menu和SubMenu的组件
+        (childElement.type && childElement.type.displayName === "Menuitem") ||
+        childElement.type.displayName === "SubMenu"
+      ) {
+        // 2. 遍历出来的children Item 添加index props ----> 借助React辅助函数 React.cloneElement可以复制出来元素 并且添加对应的props
+        return cloneElement(childElement, {
+          index: current + "-" + index, // current是从父级菜单传过来的index：current
+        });
+      } else {
+        console.error(
+          "Menu Item Must has one MenuItem or SubMenu Component!!!!!!!!!!!"
+        );
+      }
+    });
+  };
+
   return (
     <li className={classes} {...hoverHandle}>
       <div className="submenu-title" {...clickHandle}>
         {title}
       </div>
-      <ul className="submenu">{children}</ul>
+      {/*<ul className="submenu">{children}</ul>*/}
+      <ul className="submenu">{renderChildren()}</ul>
     </li>
   );
 };
+
+SubMenu.displayName = "SubMenu";
 
 export default SubMenu;

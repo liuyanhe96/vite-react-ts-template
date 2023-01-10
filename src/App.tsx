@@ -6,35 +6,34 @@ export default function App() {
       <h3>SubMenu组件</h3>
       <Menu
         className={"test"}
+        defaultIndex="2-0"
         mode="vertical"
-        defaultOpenKeys={["33"]}
+        defaultOpenKeys={["2"]}
         onSelect={val => console.log(val)}
       >
-        <Menu.Item index={0}>1</Menu.Item>
-        <Menu.Item index={1}>2</Menu.Item>
-        <Menu.SubMenu title="subTitle" index={33}>
-          <Menu.Item index={4}>5</Menu.Item>
-          <Menu.Item index={5}>6</Menu.Item>
-          <Menu.Item index={6}>7</Menu.Item>
+        <Menu.Item>1</Menu.Item>
+        <Menu.Item>2</Menu.Item>
+        <Menu.SubMenu title="subTitle">
+          <Menu.Item>5</Menu.Item>
+          <Menu.Item>6</Menu.Item>
+          <Menu.Item>7</Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item index={2} disabled>
-          3
-        </Menu.Item>
-        <Menu.Item index={3}>4</Menu.Item>
+        <Menu.Item disabled>3</Menu.Item>
+        <Menu.Item>4</Menu.Item>
       </Menu>
+
       <h3>Menu 组件</h3>
       <Menu
         className={"test"}
         mode="vertical"
         onSelect={val => console.log(val)}
       >
-        <Menu.Item index={0}>1</Menu.Item>
-        <Menu.Item index={1}>2</Menu.Item>
-        <Menu.Item index={2} disabled>
-          3
-        </Menu.Item>
-        <Menu.Item index={3}>4</Menu.Item>
+        <Menu.Item>1</Menu.Item>
+        <Menu.Item>2</Menu.Item>
+        <Menu.Item disabled>3</Menu.Item>
+        <Menu.Item>4</Menu.Item>
       </Menu>
+
       <h3>Icon 组件</h3>
       <Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>
       <Icon

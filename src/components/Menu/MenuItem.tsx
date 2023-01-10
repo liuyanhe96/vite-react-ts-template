@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { MenuContext } from "@/components/Menu/index";
 
 export interface IMenuItemProps {
-  index: number;
+  index?: string;
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -17,7 +17,7 @@ const MenuItem: React.FunctionComponent<IMenuItemProps> = props => {
   const { onSelect, index: currentIndex } = useContext(MenuContext);
   const { index, className: cls, style, children, disabled } = props;
   const handleClick = () => {
-    if (onSelect && !disabled) {
+    if (onSelect && !disabled && index && typeof index === "string") {
       // 把MenuItem index属性传递出去
       onSelect(index);
     }
@@ -38,5 +38,7 @@ const MenuItem: React.FunctionComponent<IMenuItemProps> = props => {
     </li>
   );
 };
+
+MenuItem.displayName = "MenuItem";
 
 export default MenuItem;
