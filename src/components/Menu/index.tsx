@@ -1,4 +1,6 @@
 // import * as React from "react";
+import "./style.scss";
+
 import classnames from "classnames";
 // 1. 使用classnames合并menu的公共类名
 // 2. 当在Menu上面触发onSelect事件 -> 设置MenuItem的active状态，这个状态是存储在Menu上面的 -> 父子状态传递
@@ -81,7 +83,7 @@ const Menu: MenuType = props => {
       // console.log("childElement", childElement);
       if (
         // 根据displayName来判断当前加的Menu下面的children组件里面是否有其他不是Menu和SubMenu的组件
-        (childElement.type && childElement.type.displayName === "Menuitem") ||
+        (childElement.type && childElement.type.displayName === "MenuItem") ||
         childElement.type.displayName === "SubMenu"
       ) {
         // 2. 遍历出来的children Item 添加index props ----> 借助React辅助函数 React.cloneElement可以复制出来元素 并且添加对应的props

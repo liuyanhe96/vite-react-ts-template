@@ -1,7 +1,7 @@
 // PureComponent or Function Component ?
 //  Function Component  ---> hooks 推荐！
 // PureComponent  ---> 没有shouldComponent方法； 它的更新主要靠props发生变化去更新
-// import './Button.scss'
+// import './style.scss'
 import classNames from "classnames";
 
 export type ButtonSize = "large" | "small" | "default";

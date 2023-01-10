@@ -1,0 +1,68 @@
+.menu {
+  display: flex;
+  flex-wrap: wrap; // 是否换行
+  padding-left: 0;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e6e6e6;
+
+  li {
+    list-style: none;
+  }
+
+  .menu-item {
+    &.disabled {
+      color: var(--color-disabled-text);
+    }
+  }
+
+  >.menu-item { // > 这里定义的是一级顶menu-item 所以加上大于符号 代表着一级顶子节点
+    padding: 0.5rem 1rem;
+    position: relative;
+    white-space: nowrap;
+
+    &:hover, &.active {
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-primary);
+    }
+    &.open {
+      .submenu {
+        display: block;
+      }
+    }
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    left: 50%;
+    padding-left: 0;
+    transform: translate(-50%, 10px);
+    .menu-item {
+      color: var(--color-text-0);
+      &:hover, &.active {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &.vertical {
+    flex-direction: column;
+    .submenu {
+      position: relative;
+    }
+
+    .menu-item {
+      &:not(.submenu-item) { //
+        &.active {
+          border-right: 2px solid var(--color-primary);
+        }
+      }
+    }
+
+    >.menu-item {
+      border-bottom: none;
+    }
+  }
+}
+
+

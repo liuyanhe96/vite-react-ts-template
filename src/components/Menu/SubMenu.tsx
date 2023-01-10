@@ -19,10 +19,12 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = props => {
   // defaultOpenKeys来判断当前Submenu的index是否存在于defaultOpenKeys里面
   const isOpen = mode === "vertical" && defaultOpenKeys?.includes(current + ""); // 类型转换 否则报错
   const [open, setOpen] = useState(isOpen);
+  // 父index-子index-子子index....
   const classes = classnames("menu-item submenu-item", cls, {
     // 第一个参数是给定基础的类
     open: open,
-    active: index === current, // 和先前MenuItem中的active是一样的, 获取当前index
+    // 和先前MenuItem中的active是一样的, 获取当前index
+    active: index === current || index.split("-")[0] === current,
     vertical: mode === "vertical",
   });
 
@@ -59,7 +61,7 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = props => {
         child as React.FunctionComponentElement<IMenuItemProps>;
       if (
         // 根据displayName来判断当前加的Menu下面的children组件里面是否有其他不是Menu和SubMenu的组件
-        (childElement.type && childElement.type.displayName === "Menuitem") ||
+        (childElement.type && childElement.type.displayName === "MenuItem") ||
         childElement.type.displayName === "SubMenu"
       ) {
         // 2. 遍历出来的children Item 添加index props ----> 借助React辅助函数 React.cloneElement可以复制出来元素 并且添加对应的props

@@ -4,35 +4,37 @@ export default function App() {
   return (
     <main className="semi-always-light">
       <h3>SubMenu组件</h3>
-      <Menu
-        className={"test"}
-        defaultIndex="2-0"
-        mode="vertical"
-        defaultOpenKeys={["2"]}
-        onSelect={val => console.log(val)}
-      >
-        <Menu.Item>1</Menu.Item>
-        <Menu.Item>2</Menu.Item>
-        <Menu.SubMenu title="subTitle">
-          <Menu.Item>5</Menu.Item>
-          <Menu.Item>6</Menu.Item>
-          <Menu.Item>7</Menu.Item>
-        </Menu.SubMenu>
-        <Menu.Item disabled>3</Menu.Item>
-        <Menu.Item>4</Menu.Item>
-      </Menu>
+      <div style={{ width: "260px" }}>
+        <Menu
+          className={"test"}
+          defaultIndex="2-0"
+          mode="vertical"
+          defaultOpenKeys={["2"]}
+          onSelect={val => console.log(val)}
+        >
+          <Menu.Item>首页</Menu.Item>
+          <Menu.Item disabled>禁止菜单</Menu.Item>
+          <Menu.SubMenu title="子菜单标题">
+            <Menu.Item>选项一</Menu.Item>
+            <Menu.Item>选项二</Menu.Item>
+            <Menu.Item>选项三</Menu.Item>
+          </Menu.SubMenu>
+          <Menu.Item>关于页面</Menu.Item>
+          <Menu.Item>菜单子项</Menu.Item>
+        </Menu>
+      </div>
 
-      <h3>Menu 组件</h3>
-      <Menu
-        className={"test"}
-        mode="vertical"
-        onSelect={val => console.log(val)}
-      >
-        <Menu.Item>1</Menu.Item>
-        <Menu.Item>2</Menu.Item>
-        <Menu.Item disabled>3</Menu.Item>
-        <Menu.Item>4</Menu.Item>
-      </Menu>
+      {/*<h3>Menu 组件</h3>*/}
+      {/*<Menu*/}
+      {/*  className={"test"}*/}
+      {/*  mode="vertical"*/}
+      {/*  onSelect={val => console.log(val)}*/}
+      {/*>*/}
+      {/*  <Menu.Item>1</Menu.Item>*/}
+      {/*  <Menu.Item>2</Menu.Item>*/}
+      {/*  <Menu.Item disabled>3</Menu.Item>*/}
+      {/*  <Menu.Item>4</Menu.Item>*/}
+      {/*</Menu>*/}
 
       <h3>Icon 组件</h3>
       <Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>
