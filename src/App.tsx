@@ -1,16 +1,20 @@
-import { FaAws } from "react-icons/fa";
-
 import { Button, Icon, Menu } from "./components";
 
 export default function App() {
   return (
     <main className="semi-always-light">
       <h3>Menu 组件</h3>
-      <Menu>
-        <Menu.Item>1</Menu.Item>
-        <Menu.Item>2</Menu.Item>
-        <Menu.Item>3</Menu.Item>
-        <Menu.Item>4</Menu.Item>
+      <Menu
+        className={"test"}
+        mode="vertical"
+        onSelect={val => console.log(val)}
+      >
+        <Menu.Item index={0}>1</Menu.Item>
+        <Menu.Item index={1}>2</Menu.Item>
+        <Menu.Item index={2} disabled>
+          3
+        </Menu.Item>
+        <Menu.Item index={3}>4</Menu.Item>
       </Menu>
       <h3>Icon 组件</h3>
       <Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>
