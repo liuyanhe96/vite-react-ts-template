@@ -76,6 +76,14 @@ export default function App() {
       <Input placeholder="default input" size="default"></Input>
       <Input placeholder="large input" size="large"></Input>
       <Input placeholder="small input" size="small"></Input>
+      <h3>Input Addon 示例</h3>
+      <Input
+        addonBefore="http://"
+        addonAfter=".com"
+        placeholder="请输入网址域名"
+      ></Input>
+      <Input addonBefore="http://" placeholder="请输入网址域名"></Input>
+      <Input addonAfter=".com" placeholder="请输入网址域名"></Input>
     </main>
   );
 }

@@ -1,3 +1,5 @@
+import "./style.scss";
+
 import classnames from "classnames";
 
 type InputSize = "large" | "default" | "small";
@@ -37,11 +39,15 @@ const Input: React.FunctionComponent<IInputProps> = props => {
     disabled: disabled,
     [`input-${size}`]: size,
     "allow-clear": allowClear,
+    "input-before": addonBefore,
+    "input-after": addonAfter,
   });
 
   return (
     <div className={classes}>
+      {addonBefore && <div className="addon before">{addonBefore}</div>}
       <input {...restProps} />
+      {addonAfter && <div className="addon after">{addonAfter}</div>}
     </div>
   );
 };

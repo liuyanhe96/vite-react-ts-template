@@ -1,0 +1,74 @@
+$spacers: (
+    small: 24px,
+    default: 32px,
+    large: 40px
+)!default;
+
+$input-border-radius: 4px;
+$input-padding: 4px;
+$input-border-color: #ccc;
+
+@mixin border-radius ($direction, $radius: 4px) {
+  border-#{$direction}: none;
+  border-bottom-#{$direction}-radius: $radius;
+  border-top-#{$direction}-radius: $radius;
+}
+
+@mixin center() {
+  display: inline-flex;
+  align-items: center;
+}
+
+  // 加入全局input样式
+  .input {
+  // display: inline-flex; // 注意：input输入框是行内元素 这样input组件不会占据一整行的空间
+  @include center();
+  justify-content: center;
+  // 重置input标签的默认样式 使输入框无任何样式；之后再根据需求自定义样式
+  input {
+    appearance: none;
+    outline: none; // outline鼠标点击输入框时，会有个外层蓝色的框线
+    height: 100%;
+    width: 100%;
+    border-radius: $input-border-radius;
+    border: 1px solid $input-border-color;
+  }
+  // size large small default  ---> mixin
+  // 遍历$spacers
+  @each $key, $value in $spacers {
+    &.input-#{$key} {
+      // 设置input高度
+      height: $value;
+      .addon {
+        height: $value;
+      }
+    }
+  }
+    // addon
+    .addon {
+    padding: 0 $input-padding;
+    border: 1px solid $input-border-color;
+    @include center();
+    &.before {
+      border-top-left-radius: $input-border-radius;
+      border-bottom-left-radius: $input-border-radius;
+    }
+    &.after {
+      border-top-right-radius: $input-border-radius;
+      border-bottom-right-radius: $input-border-radius;
+    }
+  }
+    &.input-before {
+      input {
+        @include border-radius(left, 0)
+      }
+    }
+    &.input-after {
+      input {
+        @include border-radius(right, 0)
+      }
+    }
+}
+
+// prefix
+// disabled
