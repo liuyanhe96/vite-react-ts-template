@@ -1,4 +1,4 @@
-import { Button, Icon, Menu } from "./components";
+import { Button, Icon, Input, Menu } from "./components";
 
 export default function App() {
   return (
@@ -69,6 +69,13 @@ export default function App() {
       <Button href="https://www.baidu.com" target="blank" type="link" disabled>
         disabled 链接Button
       </Button>
+      <hr />
+      <h3>Input组件示例</h3>
+      <Input placeholder="test input"></Input>
+      <h3>Input Size示例</h3>
+      <Input placeholder="default input" size="default"></Input>
+      <Input placeholder="large input" size="large"></Input>
+      <Input placeholder="small input" size="small"></Input>
     </main>
   );
 }
