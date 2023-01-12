@@ -84,6 +84,22 @@ export default function App() {
       ></Input>
       <Input addonBefore="http://" placeholder="请输入网址域名"></Input>
       <Input addonAfter=".com" placeholder="请输入网址域名"></Input>
+      <h3>Input prefix suffix</h3>
+      <Input
+        prefix={<Icon type="bs" icon="BsFillBadge8KFill" color="blue"></Icon>}
+        placeholder="prefix"
+      ></Input>
+      <Input
+        suffix={<Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>}
+        placeholder="suffix"
+      ></Input>
+      <Input
+        prefix={<Icon type="bs" icon="BsFillBadge8KFill" color="blue"></Icon>}
+        suffix={<Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>}
+        placeholder="prefix && suffix"
+      ></Input>
+      <h3>Input disabled</h3>
+      <Input disabled placeholder="disabled"></Input>
     </main>
   );
 }

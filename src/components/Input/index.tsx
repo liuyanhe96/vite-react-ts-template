@@ -46,7 +46,11 @@ const Input: React.FunctionComponent<IInputProps> = props => {
   return (
     <div className={classes}>
       {addonBefore && <div className="addon before">{addonBefore}</div>}
-      <input {...restProps} />
+      <div className="input-wrapper">
+        {prefix && <span className="prefix">{prefix}</span>}
+        <input disabled={disabled} {...restProps} />
+        {suffix && <span className="suffix">{suffix}</span>}
+      </div>
       {addonAfter && <div className="addon after">{addonAfter}</div>}
     </div>
   );
