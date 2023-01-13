@@ -93,4 +93,12 @@ $input-border-color: #ccc;
       background: none;
     }
   }
+
+  // allow clear
+  &.allow-clear {
+    .icons {
+      margin-right: 4px;
+      width: 18px;
+    }
+  }
 }

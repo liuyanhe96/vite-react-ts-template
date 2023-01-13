@@ -92,6 +92,7 @@ export default function App() {
       <Input
         suffix={<Icon type="bs" icon="BsFillBadge8KFill" color="red"></Icon>}
         placeholder="suffix"
+        allowClear
       ></Input>
       <Input
         prefix={<Icon type="bs" icon="BsFillBadge8KFill" color="blue"></Icon>}

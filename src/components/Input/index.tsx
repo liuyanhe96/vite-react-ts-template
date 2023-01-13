@@ -1,6 +1,10 @@
 import "./style.scss";
 
 import classnames from "classnames";
+import { useRef, useState } from "react";
+import { useHover } from "usehooks-ts";
+
+import Icon from "../Icon";
 
 type InputSize = "large" | "default" | "small";
 // 原声的input是有自己的属性
@@ -35,6 +39,11 @@ const Input: React.FunctionComponent<IInputProps> = props => {
     ...restProps
   } = props;
 
+  const hoverRef = useRef(null);
+  const isHover = useHover(hoverRef);
+
+  const [value, setValue] = useState(props.defaultValue || "");
+
   const classes = classnames("input", cls, {
     disabled: disabled,
     [`input-${size}`]: size,
@@ -43,12 +52,45 @@ const Input: React.FunctionComponent<IInputProps> = props => {
     "input-after": addonAfter,
   });
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setValue(e.target.value.trim());
+    onChange && onChange(e); // 把事件回调出去
+  };
+
+  const handleClear = () => {
+    setValue("");
+    onClear && onClear();
+  };
+
   return (
     <div className={classes}>
       {addonBefore && <div className="addon before">{addonBefore}</div>}
       <div className="input-wrapper">
         {prefix && <span className="prefix">{prefix}</span>}
-        <input disabled={disabled} {...restProps} />
+        <input
+          disabled={disabled}
+          {...restProps}
+          value={value}
+          onChange={handleOnChange}
+        />
+        {allowClear && (
+          <span
+            className="icons"
+            ref={hoverRef}
+            onClick={handleClear}
+            role="presentation"
+          >
+            {value.trim().length > 0 && (
+              <Icon
+                type="bs"
+                size={12}
+                color={isHover ? "#ddd" : "#eee"}
+                icon="BsXCircleFill"
+              ></Icon>
+            )}
+          </span>
+        )}
         {suffix && <span className="suffix">{suffix}</span>}
       </div>
       {addonAfter && <div className="addon after">{addonAfter}</div>}

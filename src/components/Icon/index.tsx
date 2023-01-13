@@ -102,6 +102,16 @@ export default function Icon(props: IIconProps) {
     ...reset
   } = props;
 
+  // color size, style... 等属性
+  const iconProp = {
+    style: {
+      fontSize: size,
+      color,
+      ...style,
+    },
+    ...reset,
+  };
+
   let Item;
   if (icon && type) {
     // 不能确定传递过来的icon一定满足于特定库支持的参数；数组越界的问题！！
@@ -113,7 +123,7 @@ export default function Icon(props: IIconProps) {
     //   console.error("传入的参数异常");
     // }
     Item = IconTypeMap[type][icon]; // 还需要给上面IconTypeMap指定ts类型 否则报错
-    return <Item {...reset}></Item>;
+    return <Item {...iconProp}></Item>;
   } else if (custom && url) {
     // 自定义到icon-font
     loadUrl(url);
@@ -123,15 +133,6 @@ export default function Icon(props: IIconProps) {
     );
     // 先判断用户是否设置class属性，设置了就直接使用； 再判断是否用户设置了prefix属性
     const classes = cls ? cls : iconCls;
-    // color size, style... 等属性
-    const iconProp = {
-      style: {
-        fontSize: size,
-        color,
-        ...style,
-      },
-      ...reset,
-    };
     return <i className={classes} {...iconProp}></i>;
   }
   //
