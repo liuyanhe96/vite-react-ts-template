@@ -1,5 +1,3 @@
-import { log } from "util";
-
 import { AutoComplete, Button, Icon, Input, Menu } from "./components";
 
 export default function App() {
@@ -128,6 +126,7 @@ export default function App() {
         placeholder="custom filter"
         options={["1", "2", "3", "4", "5", "6"]}
         filterOptions={(input, options) => options > input}
+        autoFocus
       ></AutoComplete>
       <AutoComplete
         placeholder="render test"

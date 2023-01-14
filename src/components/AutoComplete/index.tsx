@@ -1,5 +1,8 @@
+import "./style.scss";
+
 import classnames from "classnames";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
 type LabelOptions =
   | string
@@ -29,9 +32,13 @@ const AutoComplete: React.FunctionComponent<IAutoCompleteProps> = props => {
     filterOptions,
     onSelect,
     onChange,
+    autoFocus,
     render,
     ...restProps
   } = props;
+
+  const ref = useRef(null);
+  const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
   // value ---> 绑定input
   const [value, setValue] = useState(props.defaultValue || "");
@@ -42,6 +49,9 @@ const AutoComplete: React.FunctionComponent<IAutoCompleteProps> = props => {
     disabled: disabled,
   });
 
+  // 定义用户选择的索引值
+  const [index, setIndex] = useState(-1);
+
   const onChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setValue(value);
@@ -49,6 +59,7 @@ const AutoComplete: React.FunctionComponent<IAutoCompleteProps> = props => {
       // 没有value 用户未进入到筛选的状态 需要把result设置未空
       // 用户删除value，需要清空所以的弹出提示效果
       setResults([]);
+      setIndex(-1);
       return;
     }
     // 用户有传onChange 需要回调
@@ -103,6 +114,7 @@ const AutoComplete: React.FunctionComponent<IAutoCompleteProps> = props => {
   const selectHandle = (i: LabelOptions) => {
     // 清空result
     setResults([]);
+    setIndex(-1);
     // 设置value
     if (typeof i === "string") {
       setValue(i);
@@ -113,20 +125,65 @@ const AutoComplete: React.FunctionComponent<IAutoCompleteProps> = props => {
     onSelect && onSelect(i);
   };
 
+  const onKeyDownHandle = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // 捕获用户键盘事件  --> e.key
+    // if (e.keyCode === 13) { 已弃用
+    // }
+    // console.log("key down", e.key);
+    if (e.key === "ArrowDown") {
+      if (index < result.length - 1) {
+        // 边界判断 防止index超过列表长度
+        setIndex(index + 1);
+      }
+    }
+    if (e.key === "ArrowUp") {
+      if (index > 0) {
+        // 边界判断 防止index小于0
+        setIndex(index - 1);
+      }
+    }
+    if (e.key === "Enter") {
+      if (index !== -1 && result.length > 0) {
+        selectHandle(result[index]);
+      }
+    }
+  };
+
+  const handleClickOutside = () => {
+    setIndex(-1);
+    setResults([]);
+  };
+
+  // 监听ref以外的区域被点击 执行回调
+  useOnClickOutside(ref, handleClickOutside);
+
+  useEffect(() => {
+    if (props.autoFocus) {
+      // inputRef 需要指定类型
+      inputRef.current && inputRef.current.focus();
+    }
+  }, [props.autoFocus]);
+
   return (
-    <div className={classes}>
+    <div className={classes} ref={ref}>
       <input
+        ref={inputRef}
         value={value}
         disabled={disabled}
         {...restProps}
         onChange={onChangeHandle}
+        onKeyDown={onKeyDownHandle}
       />
       {result.length > 0 && (
-        <ul>
-          {result.map((item, index) => {
+        <ul className="auto-complete-lists">
+          {result.map((item, i) => {
             return (
               <li
-                key={index}
+                className={classnames(
+                  "auto-complete-item",
+                  index === i && "active"
+                )}
+                key={i}
                 onClick={() => selectHandle(item)}
                 role="presentation"
               >
