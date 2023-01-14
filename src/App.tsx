@@ -1,3 +1,5 @@
+import { log } from "util";
+
 import { AutoComplete, Button, Icon, Input, Menu } from "./components";
 
 export default function App() {
@@ -103,10 +105,35 @@ export default function App() {
       <Input disabled placeholder="disabled"></Input>
 
       <h3>AutoComplete</h3>
-      <AutoComplete placeholder="test AutoComplete"></AutoComplete>
+      {/*<AutoComplete*/}
+      {/*  options={["ha", "aaa", "hahahah", "abab"]}*/}
+      {/*  placeholder="test AutoComplete"*/}
+      {/*></AutoComplete>*/}
+      <AutoComplete
+        options={[
+          { label: "aaa", value: "111", id: "1" },
+          { label: "bbb", value: "222", id: "2" },
+          { label: "ccc", value: "333", id: "3" },
+          { label: "abc", value: "123", id: "4" },
+          { label: "bec", value: "444", id: "5" },
+        ]}
+        placeholder="test AutoComplete"
+        onSelect={val => console.log(val)}
+      ></AutoComplete>
       <AutoComplete
         placeholder="test AutoComplete disabled"
         disabled
+      ></AutoComplete>
+      <AutoComplete
+        placeholder="custom filter"
+        options={["1", "2", "3", "4", "5", "6"]}
+        filterOptions={(input, options) => options > input}
+      ></AutoComplete>
+      <AutoComplete
+        placeholder="render test"
+        options={["1", "2", "3", "4", "5", "6"]}
+        filterOptions={(input, options) => options > input}
+        render={item => <h3>{item}</h3>}
       ></AutoComplete>
       <p> ----- </p>
       <p> ----- </p>
