@@ -1,4 +1,4 @@
-import { Button, Icon, Input, Menu } from "./components";
+import { AutoComplete, Button, Icon, Input, Menu } from "./components";
 
 export default function App() {
   return (
@@ -101,6 +101,19 @@ export default function App() {
       ></Input>
       <h3>Input disabled</h3>
       <Input disabled placeholder="disabled"></Input>
+
+      <h3>AutoComplete</h3>
+      <AutoComplete placeholder="test AutoComplete"></AutoComplete>
+      <AutoComplete
+        placeholder="test AutoComplete disabled"
+        disabled
+      ></AutoComplete>
+      <p> ----- </p>
+      <p> ----- </p>
+      <p> ----- </p>
+      <p> ----- </p>
+      <p> ----- </p>
+      <p> ----- </p>
     </main>
   );
 }
